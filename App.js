@@ -2,41 +2,20 @@ import { Styles } from './Styles';
 import React, { useState, useEffect } from 'react';
 import {
   Alert,
-  Button,
-  Dimensions,
-  Image,
-  Platform,
   Pressable,
   Text,
-  TouchableHighlight,
-  SafeAreaView,
   StatusBar,
-  StyleSheet,
   View,
 } from 'react-native';
 
+// =========== MAIN APP ===============
 export default function App() {
-
+  
   // Remove console Log
   console.log("App Execution!");
-  console.log(Dimensions.get("screen"));
 
-  // This is the MAIN APP code section
-  // return (
-  //   <SafeAreaView style={styles.container}>
-  //     <View
-  //       style={{
-  //         backgroundColor: "orange",
-  //         width: "100%",
-  //         height: "33%",
-  //       }} >
-  //     </View>
-  //   </SafeAreaView>
-  // );
-
-  let text = "some text over here"
-
-  const [view, setView] = useState("L");
+  const [view, setView] = useState(1);
+  StatusBar.setBarStyle('light-content', true);
 
   return (
     <View style={Styles.appBackground}>
@@ -52,7 +31,7 @@ export default function App() {
         {/* navigation Buttons */}
         <View style={Styles.buttonAlign}>
 
-          <Pressable onPress={() => setView("L")} >
+          <Pressable onPress={() => setView(1)} >
             <View >
               <Text style={Styles.buttonText}>
                 {navButtonLeft}
@@ -60,13 +39,13 @@ export default function App() {
             </View>
           </Pressable>
 
-          <Pressable onPress={() => setView("C")} >
+          <Pressable onPress={() => setView(2)} >
             <Text style={Styles.buttonText}>
               {navButtonCenter}
             </Text>
           </Pressable>
 
-          <Pressable onPress={() => setView("R")} >
+          <Pressable onPress={() => setView(3)} >
             <Text style={Styles.buttonText}>
               {navButtonRight}
             </Text>
@@ -75,20 +54,20 @@ export default function App() {
         </View>
 
         {/* Main window */}
-        <View>
-          {view === "L" && (
+        <View style={Styles.info}>
+          {view == 1 && (
             <Text style={{ alignSelf: "center" }}>
               This is {navButtonLeft} Section
             </Text>
           )}
 
-          {view === "C" && (
+          {view == 2 && (
             <Text style={{ alignSelf: "center" }}>
               This is {navButtonCenter} Section
             </Text>
           )}
 
-          {view === "R" && (
+          {view == 3 && (
             <Text style={{ alignSelf: "center" }}>
               This is {navButtonRight} Section
             </Text>
@@ -131,12 +110,12 @@ const navButtonPressedCenter = () => Alert.alert(navButtonCenter, "Add new " + n
 ]);
 
 const navButtonPressedRight = () => Alert.alert(navButtonRight, "Add new " + navButtonRight + " Log?", [
-  {
-    text: "Accidents",
-  },
-  {
-    text: "Cancel",
-    style: "cancel",
-  }
-]);
+    {
+      text: "Accidents",
+    },
+    {
+      text: "Cancel",
+      style: "cancel",
+    }
+  ]);
 

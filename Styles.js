@@ -9,37 +9,47 @@ import {
 export const Styles = StyleSheet.create({
     appBackground: {
         backgroundColor: 'dodgerblue',
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        // paddingTop: 0, 
+
         flex: 1,
         // flexDirection: "row", // horizontal: "column", "row"
         // justifyContent: "space-evenly", // main
         // alignItems: "center", // secondary
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
     buttonAlign: {
-        backgroundColor: 'red',
-        flexDirection: "row", // horizontal: "column", "row"
-        justifyContent: "space-evenly", // main
-        alignItems: "center", // secondary
+        backgroundColor: 'red', // Not to be seen!
+        flexDirection: "row", 
+        justifyContent: "space-evenly",
+        alignItems: "center",
     },
     buttonText: {
-        backgroundColor: 'orange',
+        backgroundColor: "dodgerblue",
         height: 55,
-        width: Dimensions.get("screen").width / 3,
+        width: (true) ? Dimensions.get("screen").width / 3 : 120,
 
-        color: "black",
+        color: "white",
         textAlign: "center",
         textAlignVertical: "center",
         fontSize: 18,
         fontWeight: "bold",
     },
 
+    info: {
+        // backgroundColor: 'green',
+        borderStyle: "solid",
+        borderWidth: 2.5,
+        borderRadius: 10,
+        borderColor: "black",
+        backgroundColor: "gainsboro"
+    },
 
     top: {
-        backgroundColor: "dodgerblue",
-        flex: 1,
+        backgroundColor: "white",
+        flex: 1, // Top to Bottom Ratio
     },
     bottom: {
         backgroundColor: "white",
-        flex: 2,
+        flex: 2, // Top to Bottom Ratio
     },
 });
