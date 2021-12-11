@@ -4,6 +4,7 @@ import {
   Alert,
   Pressable,
   Text,
+  SafeAreaView,
   StatusBar,
   View,
 } from 'react-native';
@@ -11,14 +12,14 @@ import {
 // =========== MAIN APP ===============
 export default function App() {
   
-  // Remove console Log
-  console.log("App Execution!");
-
+  // Variable declarations
   const [view, setView] = useState(1);
   StatusBar.setBarStyle('light-content', true);
+  let selectionStyle
 
+  // Main return of App hooks
   return (
-    <View style={Styles.appBackground}>
+    <SafeAreaView style={Styles.appBackground}>
 
       {/* This is the top Section */}
       <View style={Styles.top}>
@@ -29,31 +30,36 @@ export default function App() {
       <View style={Styles.bottom}>
 
         {/* navigation Buttons */}
-        <View style={Styles.buttonAlign}>
-
+        <View style={Styles.navButtonAlign}>
           <Pressable onPress={() => setView(1)} >
-            <View >
-              <Text style={Styles.buttonText}>
-                {navButtonLeft}
-              </Text>
+            <View > 
+              {view == 1 
+                ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
+                : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
+              }
             </View>
           </Pressable>
 
           <Pressable onPress={() => setView(2)} >
-            <Text style={Styles.buttonText}>
-              {navButtonCenter}
-            </Text>
+            <View >
+              {view == 2
+                ? <Text style={Styles.navButtonSelect}> {navButtonCenter} </Text>
+                : <Text style={Styles.navButtonNonSelect}> {navButtonCenter} </Text>
+              }
+            </View>
           </Pressable>
 
           <Pressable onPress={() => setView(3)} >
-            <Text style={Styles.buttonText}>
-              {navButtonRight}
-            </Text>
+            <View >
+              {view == 3
+                ? <Text style={Styles.navButtonSelect}> {navButtonRight} </Text>
+                : <Text style={Styles.navButtonNonSelect}> {navButtonRight} </Text>
+              }
+            </View>
           </Pressable>
-
         </View>
 
-        {/* Main window */}
+        {/* Bottom Section window */}
         <View style={Styles.info}>
           {view == 1 && (
             <Text style={{ alignSelf: "center" }}>
@@ -72,12 +78,11 @@ export default function App() {
               This is {navButtonRight} Section
             </Text>
           )}
-
         </View>
 
       </View>
 
-    </View>
+    </SafeAreaView>
   );
 }
 
