@@ -5,17 +5,103 @@ import {
   Pressable,
   Text,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   View,
 } from 'react-native';
 
+// Section Names
+let navButtonLeft = "Milage";
+let navButtonCenter = "Maintenance";
+let navButtonRight = "Accidents";
+
+// Handles Navigation view page
+const setView = (props) => {
+  return(view = props, console.log("Set to: " + view));
+}
+
+// OnPress Function
+const handlePress = () => console.log("Text Pressed!");
+const buttonPress = () => console.log("Button Pressed!");
+
+// REMOVE Alert Messages
+const navButtonPressedLeft = () => Alert.alert(navButtonLeft, "Add new " + navButtonLeft + " Log?", [
+  {
+    text: "Add",
+  },
+  {
+    text: "Cancel",
+    style: "cancel",
+  }
+]);
+const navButtonPressedCenter = () => Alert.alert(navButtonCenter, "Add new " + navButtonCenter + " Log?", [
+  {
+    text: "New " + navButtonLeft,
+  },
+  {
+    text: "Cancel",
+    style: "cancel",
+  }
+]);
+const navButtonPressedRight = () => Alert.alert(navButtonRight, "Add new " + navButtonRight + " Log?", [
+  {
+    text: "Accidents",
+  },
+  {
+    text: "Cancel",
+    style: "cancel",
+  }
+]);
+
+// Navigation Bar Buttons
+const NavBarButtonLeft = () => {
+  return (
+    <Pressable onPress={() => setView(1)} >
+      <View > 
+        {view == 1 
+          ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
+          : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
+        }
+      </View>
+    </Pressable>
+  );
+}
+
+
+// Navigation Bar Info Sections
+const BottomInfoLeft = () => {
+  return (
+    <Text style={{ alignSelf: "center" }}>
+      This is {navButtonLeft} Section
+    </Text>
+  );
+}
+const BottomInfoCenter = () => {
+  return (
+    <Text style={{ alignSelf: "center" }}>
+      This is {navButtonCenter} Section
+    </Text>
+  );
+}
+const BottomInfoRight = () => {
+  return (
+    <Text style={{ alignSelf: "center" }}>
+      This is {navButtonRight} Section
+    </Text>
+  );
+}
+
 // =========== MAIN APP ===============
-export default function App() {
+const App = () => {
   
   // Variable declarations
-  const [view, setView] = useState(1);
   StatusBar.setBarStyle('light-content', true);
-  let selectionStyle
+  const [view, setView] = useState(1);
+  // let selectionStyle
+
+
+  let numClicks = 1; 
+  const [timesPressed, setTimesPressed] = useState(0);
 
   // Main return of App hooks
   return (
@@ -23,12 +109,16 @@ export default function App() {
 
       {/* This is the top Section */}
       <View style={Styles.top}>
-
+        <Pressable onPress={() => setTimesPressed((current) => current + 1)}>
+          <Text style={Styles.topText}>
+            {timesPressed}
+          </Text>
+        </Pressable>
       </View>
 
       {/* This is the bottom Section */}
       <View style={Styles.bottom}>
-
+      
         {/* navigation Buttons */}
         <View style={Styles.navButtonAlign}>
           <Pressable onPress={() => setView(1)} >
@@ -61,66 +151,15 @@ export default function App() {
 
         {/* Bottom Section window */}
         <View style={Styles.info}>
-          {view == 1 && (
-            <Text style={{ alignSelf: "center" }}>
-              This is {navButtonLeft} Section
-            </Text>
-          )}
-
-          {view == 2 && (
-            <Text style={{ alignSelf: "center" }}>
-              This is {navButtonCenter} Section
-            </Text>
-          )}
-
-          {view == 3 && (
-            <Text style={{ alignSelf: "center" }}>
-              This is {navButtonRight} Section
-            </Text>
-          )}
+          {view == 1 && ( <BottomInfoLeft/> )}
+          {view == 2 && ( <BottomInfoCenter/> )}
+          {view == 3 && ( <BottomInfoRight/> )}
         </View>
 
       </View>
-
     </SafeAreaView>
   );
 }
 
-let navButtonLeft = "Milage";
-let navButtonCenter = "Maintenance";
-let navButtonRight = "Accidents";
-
-// OnPress Function
-const handlePress = () => console.log("Text Pressed!");
-const buttonPress = () => console.log("Button Pressed!");
-
-const navButtonPressedLeft = () => Alert.alert(navButtonLeft, "Add new " + navButtonLeft + " Log?", [
-  {
-    text: "Add",
-  },
-  {
-    text: "Cancel",
-    style: "cancel",
-  }
-]);
-
-const navButtonPressedCenter = () => Alert.alert(navButtonCenter, "Add new " + navButtonCenter + " Log?", [
-  {
-    text: "New " + navButtonLeft,
-  },
-  {
-    text: "Cancel",
-    style: "cancel",
-  }
-]);
-
-const navButtonPressedRight = () => Alert.alert(navButtonRight, "Add new " + navButtonRight + " Log?", [
-    {
-      text: "Accidents",
-    },
-    {
-      text: "Cancel",
-      style: "cancel",
-    }
-  ]);
-
+// Export the main App
+export default App;

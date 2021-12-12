@@ -8,16 +8,10 @@ import {
 
 export const Styles = StyleSheet.create({
     appBackground: {
-        backgroundColor: 'dodgerblue',
+        backgroundColor: 'dodgerblue', // Applies only to Status Bar
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        // paddingTop: 0, 
-
         flex: 1,
-        // flexDirection: "row", // horizontal: "column", "row"
-        // justifyContent: "space-evenly", // main
-        // alignItems: "center", // secondary
     },
-    
     // The outer container to hold the navigation buttons
     navButtonAlign: { 
         backgroundColor: 'dodgerblue', // Not to be seen!
@@ -25,7 +19,6 @@ export const Styles = StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center",
     },
-
     // Navigation Button style for Selected and Non-Selected states
     navButtonSelect: {
         // Backing
@@ -42,7 +35,7 @@ export const Styles = StyleSheet.create({
 
         // Boarder
         borderStyle: "solid",
-        borderWidth: 2.5,
+        borderWidth: 3.5,
         borderRadius: 45 / 2, // Magic number is from the height! (half of the current height)
         borderColor: "gainsboro",
         backgroundColor: "white"
@@ -60,25 +53,37 @@ export const Styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
     },
-
-
     // REMOVE: Just playing around with border styles
     info: {
         // backgroundColor: 'green',
         borderStyle: "solid",
-        borderWidth: 2.5,
+        borderWidth: 2,
         borderRadius: 10,
         borderColor: "black",
         backgroundColor: "gainsboro"
     },
-
     // Divides the two main screen sections. Relative ration can be set here.
     top: {
         backgroundColor: "white",
-        flex: 1, // Top to Bottom Ratio
+        alignItems: "center",
+        flex: 3, // Top to Bottom Ratio
     },
+    topText: {
+        backgroundColor: "white",
+        alignItems: "center",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+
+        // Text
+        color: "dodgerblue",
+        textAlign: "center",
+        textAlignVertical: "center",
+        fontSize: 48,
+        fontWeight: "bold",
+    },
+
     bottom: {
         backgroundColor: "white",
-        flex: 2, // Top to Bottom Ratio
+        flex: 7, // Top to Bottom Ratio
     },
 });
