@@ -43,7 +43,7 @@ export const Styles = StyleSheet.create({
     navButtonNonSelect: {
         // Backing
         backgroundColor: "dodgerblue",
-        height: 55,
+        height: 56,
         width: (true) ? Dimensions.get("screen").width / 3 : 120,
 
         // Text
@@ -54,14 +54,7 @@ export const Styles = StyleSheet.create({
         fontWeight: "bold",
     },
     // REMOVE: Just playing around with border styles
-    info: {
-        // backgroundColor: 'green',
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: "black",
-        backgroundColor: "gainsboro"
-    },
+    
     // Divides the two main screen sections. Relative ration can be set here.
     top: {
         backgroundColor: "white",
@@ -85,5 +78,38 @@ export const Styles = StyleSheet.create({
     bottom: {
         backgroundColor: "white",
         flex: 7, // Top to Bottom Ratio
+    },
+    bottomSubSections: {
+        // backgroundColor: 'green',
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderRadius: 10,
+        borderColor: "black",
+        backgroundColor: "gainsboro"
+    },
+
+    scrollViewContainer1:
+    {
+        backgroundColor: "white",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    scrollViewContainer2:
+    {
+        backgroundColor: "lightgrey",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    scrollViewContainer3:
+    {
+        backgroundColor: "grey",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

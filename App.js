@@ -1,7 +1,9 @@
 import { Styles } from './Styles';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Alert,
+  Animated,
+  Dimensions,
   Pressable,
   Text,
   SafeAreaView,
@@ -99,8 +101,10 @@ const App = () => {
   const [view, setView] = useState(1);
   // let selectionStyle
 
+  // Animation for Scroll View
+  const scrollX = useRef(new Animated.Value(0)).current;
 
-  let numClicks = 1; 
+  // Cookie Clicker
   const [timesPressed, setTimesPressed] = useState(0);
 
   // Main return of App hooks
@@ -150,11 +154,40 @@ const App = () => {
         </View>
 
         {/* Bottom Section window */}
-        <View style={Styles.info}>
-          {view == 1 && ( <BottomInfoLeft/> )}
-          {view == 2 && ( <BottomInfoCenter/> )}
-          {view == 3 && ( <BottomInfoRight/> )}
-        </View>
+        {/* <View style={Styles.bottomSubSections}> */}
+          {/* Original Sections */}
+          {/* {view == 1 && ( <BottomInfoLeft/> )} */}
+          {/* {view == 2 && ( <BottomInfoCenter/> )} */}
+          {/* {view == 3 && ( <BottomInfoRight/> )} */}
+        {/* </View> */}
+
+          {/* Implementing ScrollView */}
+          <ScrollView
+            horizontal={true}
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            onScroll={Animated.event([
+              {nativeEvent: {contentOffset: {x: scrollX} } } ],
+              {useNativeDriver: false})
+            }
+            // onMomentumScrollBegin={() => setView(3)}
+          >
+            <View style={Styles.scrollViewContainer1}>
+              <Text> Child 1 </Text>
+            </View>
+
+            <View style={Styles.scrollViewContainer2}>
+              <Text> Child 2 </Text>
+            </View>
+
+            <View style={Styles.scrollViewContainer3}>
+              <Text> Child 3 </Text>
+            </View>
+
+          </ScrollView>
+
+
 
       </View>
     </SafeAreaView>
