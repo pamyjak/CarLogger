@@ -19,12 +19,8 @@ let navButtonRight = "Accidents";
 
 // Handles Navigation view page
 const setView = (props) => {
-  return(view = props, console.log("Set to: " + view));
+  return (view = props, console.log("Set to: " + view));
 }
-
-// OnPress Function
-const handlePress = () => console.log("Text Pressed!");
-const buttonPress = () => console.log("Button Pressed!");
 
 // REMOVE Alert Messages
 const navButtonPressedLeft = () => Alert.alert(navButtonLeft, "Add new " + navButtonLeft + " Log?", [
@@ -59,8 +55,8 @@ const navButtonPressedRight = () => Alert.alert(navButtonRight, "Add new " + nav
 const NavBarButtonLeft = () => {
   return (
     <Pressable onPress={() => setView(1)} >
-      <View > 
-        {view == 1 
+      <View >
+        {view == 1
           ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
           : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
         }
@@ -68,7 +64,6 @@ const NavBarButtonLeft = () => {
     </Pressable>
   );
 }
-
 
 // Navigation Bar Info Sections
 const BottomInfoLeft = () => {
@@ -95,14 +90,24 @@ const BottomInfoRight = () => {
 
 // =========== MAIN APP ===============
 const App = () => {
-  
+
   // Variable declarations
   StatusBar.setBarStyle('light-content', true);
   const [view, setView] = useState(1);
-  // let selectionStyle
 
   // Animation for Scroll View
   const scrollX = useRef(new Animated.Value(0)).current;
+
+  // Sets the Navigation Window page
+  function SetNavView(val) {
+    setView(val);
+    this.NavScrollView.scrollTo({
+      x: Dimensions.get("screen").width * (val - 1),
+      y: 0,
+      animated: true
+    });
+    console.log("Set View to: " + val);
+  }
 
   // Cookie Clicker
   const [timesPressed, setTimesPressed] = useState(0);
@@ -122,19 +127,19 @@ const App = () => {
 
       {/* This is the bottom Section */}
       <View style={Styles.bottom}>
-      
+
         {/* navigation Buttons */}
         <View style={Styles.navButtonAlign}>
-          <Pressable onPress={() => setView(1)} >
-            <View > 
-              {view == 1 
+          <Pressable onPress={() => SetNavView(1)} >
+            <View >
+              {view == 1
                 ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
                 : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
               }
             </View>
           </Pressable>
 
-          <Pressable onPress={() => setView(2)} >
+          <Pressable onPress={() => SetNavView(2)} >
             <View >
               {view == 2
                 ? <Text style={Styles.navButtonSelect}> {navButtonCenter} </Text>
@@ -143,7 +148,7 @@ const App = () => {
             </View>
           </Pressable>
 
-          <Pressable onPress={() => setView(3)} >
+          <Pressable onPress={() => SetNavView(3)} >
             <View >
               {view == 3
                 ? <Text style={Styles.navButtonSelect}> {navButtonRight} </Text>
@@ -154,40 +159,27 @@ const App = () => {
         </View>
 
         {/* Bottom Section window */}
-        {/* <View style={Styles.bottomSubSections}> */}
-          {/* Original Sections */}
-          {/* {view == 1 && ( <BottomInfoLeft/> )} */}
-          {/* {view == 2 && ( <BottomInfoCenter/> )} */}
-          {/* {view == 3 && ( <BottomInfoRight/> )} */}
-        {/* </View> */}
+        <ScrollView
+          ref={re => this.NavScrollView = re}
+          horizontal={true}
+          pagingEnabled={true}
+          scrollEnabled={false} // Disables manual scrolling
+          showsHorizontalScrollIndicator={false}
+          decelerationRate="fast"
+          scrollEventThrottle={1} // iOS 
+        >
+          <View style={Styles.scrollViewContainer1}>
+            <Text> Child 1 </Text>
+          </View>
 
-          {/* Implementing ScrollView */}
-          <ScrollView
-            horizontal={true}
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            decelerationRate="fast"
-            onScroll={Animated.event([
-              {nativeEvent: {contentOffset: {x: scrollX} } } ],
-              {useNativeDriver: false})
-            }
-            // onMomentumScrollBegin={() => setView(3)}
-          >
-            <View style={Styles.scrollViewContainer1}>
-              <Text> Child 1 </Text>
-            </View>
+          <View style={Styles.scrollViewContainer2}>
+            <Text> Child 2 </Text>
+          </View>
 
-            <View style={Styles.scrollViewContainer2}>
-              <Text> Child 2 </Text>
-            </View>
-
-            <View style={Styles.scrollViewContainer3}>
-              <Text> Child 3 </Text>
-            </View>
-
-          </ScrollView>
-
-
+          <View style={Styles.scrollViewContainer3}>
+            <Text> Child 3 </Text>
+          </View>
+        </ScrollView>
 
       </View>
     </SafeAreaView>
