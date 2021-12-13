@@ -7,55 +7,14 @@ import {
 } from 'react-native';
 
 export const Styles = StyleSheet.create({
+    // Base View of the eniter App
     appBackground: {
-        backgroundColor: 'dodgerblue', // Applies only to Status Bar
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        backgroundColor: 'dodgerblue', // Only viewed from Status Bar
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0, // iOS covered by SafeAreaView
         flex: 1,
     },
-    // The outer container to hold the navigation buttons
-    navButtonAlign: { 
-        backgroundColor: 'dodgerblue', // Not to be seen!
-        flexDirection: "row", 
-        justifyContent: "space-evenly",
-        alignItems: "center",
-    },
-    // Navigation Button style for Selected and Non-Selected states
-    navButtonSelect: {
-        // Backing
-        backgroundColor: "royalblue",
-        height: 45,
-        width: (true) ? Dimensions.get("screen").width / 3: 120,
 
-        // Text
-        color: "dodgerblue",
-        textAlign: "center",
-        textAlignVertical: "center",
-        fontSize: 18,
-        fontWeight: "bold",
-
-        // Boarder
-        borderStyle: "solid",
-        borderWidth: 3.5,
-        borderRadius: 45 / 2, // Magic number is from the height! (half of the current height)
-        borderColor: "gainsboro",
-        backgroundColor: "white"
-    },
-    navButtonNonSelect: {
-        // Backing
-        backgroundColor: "dodgerblue",
-        height: 56,
-        width: (true) ? Dimensions.get("screen").width / 3 : 120,
-
-        // Text
-        color: "white",
-        textAlign: "center",
-        textAlignVertical: "center",
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    // REMOVE: Just playing around with border styles
-    
-    // Divides the two main screen sections. Relative ration can be set here.
+    // Top Section
     top: {
         backgroundColor: "white",
         alignItems: "center",
@@ -75,6 +34,7 @@ export const Styles = StyleSheet.create({
         fontWeight: "bold",
     },
 
+    // Bottom Section
     bottom: {
         backgroundColor: "white",
         flex: 7, // Top to Bottom Ratio
@@ -98,7 +58,7 @@ export const Styles = StyleSheet.create({
     },
     scrollViewContainer2:
     {
-        backgroundColor: "lightgrey",
+        backgroundColor: "gainsboro",
         flex: 1,
         width: Dimensions.get("screen").width,
         alignItems: "center",
@@ -106,10 +66,75 @@ export const Styles = StyleSheet.create({
     },
     scrollViewContainer3:
     {
-        backgroundColor: "grey",
+        backgroundColor: "lightgrey",
         flex: 1,
         width: Dimensions.get("screen").width,
         alignItems: "center",
         justifyContent: "center",
+    },
+});
+
+
+/** Style Sheet for NavButtons **/
+let NavButtonHeight = 55;
+let SlideBarHeight = 45;
+let offset = 3.5;
+export const NavButtonStyles = StyleSheet.create({
+    Backing: {
+        backgroundColor: 'dodgerblue',
+        height: NavButtonHeight,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+    },
+
+    PillBar: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        height: SlideBarHeight - (offset * 2),
+        width: Dimensions.get("screen").width - (offset * 4),
+
+        // Boarder
+        borderStyle: "solid",
+        borderRadius: SlideBarHeight / 2,
+        backgroundColor: "royalblue", // "royalblue",
+        // borderWidth: offset / 2,
+        // borderColor: "gainsboro", // "gainsboro",
+    },
+
+    // Navigation Button style for Selected and Non-Selected states
+    Select: {
+        // Backing
+        backgroundColor: "royalblue",
+        height: SlideBarHeight,
+        width: Dimensions.get("screen").width / 3,
+
+        // Boarder
+        borderStyle: "solid",
+        borderRadius: SlideBarHeight / 2,
+        backgroundColor: "white",
+        borderWidth: offset,
+        borderColor: "gainsboro",
+
+        // Text
+        color: "dodgerblue",
+        textAlign: "center",
+        textAlignVertical: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    NonSelect: {
+        // Backing
+        backgroundColor: "transparent", // Set to fully transparent
+        height: NavButtonHeight,
+        width: Dimensions.get("screen").width / 3,
+
+        // Text
+        color: "gainsboro", // "white",
+        textAlign: "center",
+        textAlignVertical: "center",
+        fontSize: 18,
+        fontWeight: "bold",
     },
 });

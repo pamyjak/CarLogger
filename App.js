@@ -1,4 +1,4 @@
-import { Styles } from './Styles';
+import { Styles, NavButtonStyles } from './Styles';
 import React, { useState, useRef } from 'react';
 import {
   Alert,
@@ -95,18 +95,15 @@ const App = () => {
   StatusBar.setBarStyle('light-content', true);
   const [view, setView] = useState(1);
 
-  // Animation for Scroll View
-  const scrollX = useRef(new Animated.Value(0)).current;
-
   // Sets the Navigation Window page
   function SetNavView(val) {
     setView(val);
     this.NavScrollView.scrollTo({
       x: Dimensions.get("screen").width * (val - 1),
       y: 0,
-      animated: true
+      animated: true // Determines if the ScrollView is immediate or animated horizontally 
     });
-    console.log("Set View to: " + val);
+    // console.log("Set View to: " + val); // REMOVE Logger
   }
 
   // Cookie Clicker
@@ -129,33 +126,35 @@ const App = () => {
       <View style={Styles.bottom}>
 
         {/* navigation Buttons */}
-        <View style={Styles.navButtonAlign}>
-          <Pressable onPress={() => SetNavView(1)} >
-            <View >
-              {view == 1
-                ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
-                : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
-              }
-            </View>
-          </Pressable>
+        <View style={NavButtonStyles.Backing}>
+          <View style={NavButtonStyles.PillBar}>
+            <Pressable onPress={() => SetNavView(1)}>
+              <View >
+                {view == 1
+                  ? <Text style={NavButtonStyles.Select}> {navButtonLeft} </Text>
+                  : <Text style={NavButtonStyles.NonSelect}> {navButtonLeft} </Text>
+                }
+              </View>
+            </Pressable>
 
-          <Pressable onPress={() => SetNavView(2)} >
-            <View >
-              {view == 2
-                ? <Text style={Styles.navButtonSelect}> {navButtonCenter} </Text>
-                : <Text style={Styles.navButtonNonSelect}> {navButtonCenter} </Text>
-              }
-            </View>
-          </Pressable>
+            <Pressable onPress={() => SetNavView(2)}>
+              <View >
+                {view == 2
+                  ? <Text style={NavButtonStyles.Select}> {navButtonCenter} </Text>
+                  : <Text style={NavButtonStyles.NonSelect}> {navButtonCenter} </Text>
+                }
+              </View>
+            </Pressable>
 
-          <Pressable onPress={() => SetNavView(3)} >
-            <View >
-              {view == 3
-                ? <Text style={Styles.navButtonSelect}> {navButtonRight} </Text>
-                : <Text style={Styles.navButtonNonSelect}> {navButtonRight} </Text>
-              }
-            </View>
-          </Pressable>
+            <Pressable onPress={() => SetNavView(3)}>
+              <View >
+                {view == 3
+                  ? <Text style={NavButtonStyles.Select}> {navButtonRight} </Text>
+                  : <Text style={NavButtonStyles.NonSelect}> {navButtonRight} </Text>
+                }
+              </View>
+            </Pressable>
+          </View>
         </View>
 
         {/* Bottom Section window */}
