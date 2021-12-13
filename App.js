@@ -116,9 +116,11 @@ const App = () => {
       {/* This is the top Section */}
       <View style={Styles.top}>
         <Pressable onPress={() => setTimesPressed((current) => current + 1)}>
-          <Text style={Styles.topText}>
-            {timesPressed}
-          </Text>
+          <View style={Styles.topView}>
+            <Text style={Styles.topText}>
+              {timesPressed}
+            </Text>
+          </View>
         </Pressable>
       </View>
 
@@ -128,32 +130,46 @@ const App = () => {
         {/* navigation Buttons */}
         <View style={NavButtonStyles.Backing}>
           <View style={NavButtonStyles.PillBar}>
-            <Pressable onPress={() => SetNavView(1)}>
-              <View >
+            <View style={NavButtonStyles.buttonView}>
+
+              <Pressable onPress={() => SetNavView(1)}>
                 {view == 1
-                  ? <Text style={NavButtonStyles.Select}> {navButtonLeft} </Text>
-                  : <Text style={NavButtonStyles.NonSelect}> {navButtonLeft} </Text>
+                  ? <View style={NavButtonStyles.SelectView}>
+                    <Text style={NavButtonStyles.SelectText}> {navButtonLeft} </Text>
+                  </View>
+                  : <View style={NavButtonStyles.NonSelectView}>
+                    <Text style={NavButtonStyles.NonSelectText}> {navButtonLeft} </Text>
+                  </View>
                 }
-              </View>
-            </Pressable>
+              </Pressable>
 
-            <Pressable onPress={() => SetNavView(2)}>
-              <View >
-                {view == 2
-                  ? <Text style={NavButtonStyles.Select}> {navButtonCenter} </Text>
-                  : <Text style={NavButtonStyles.NonSelect}> {navButtonCenter} </Text>
-                }
-              </View>
-            </Pressable>
+              <Pressable onPress={() => SetNavView(2)}>
+                <View >
+                  {view == 2
+                    ? <View style={NavButtonStyles.SelectView}>
+                      <Text style={NavButtonStyles.SelectText}> {navButtonCenter} </Text>
+                    </View>
+                    : <View style={NavButtonStyles.NonSelectView}>
+                      <Text style={NavButtonStyles.NonSelectText}> {navButtonCenter} </Text>
+                    </View>
+                  }
+                </View>
+              </Pressable>
 
-            <Pressable onPress={() => SetNavView(3)}>
-              <View >
-                {view == 3
-                  ? <Text style={NavButtonStyles.Select}> {navButtonRight} </Text>
-                  : <Text style={NavButtonStyles.NonSelect}> {navButtonRight} </Text>
-                }
-              </View>
-            </Pressable>
+              <Pressable onPress={() => SetNavView(3)}>
+                <View >
+                  {view == 3
+                    ? <View style={NavButtonStyles.SelectView}>
+                      <Text style={NavButtonStyles.SelectText}> {navButtonRight} </Text>
+                    </View>
+                    : <View style={NavButtonStyles.NonSelectView}>
+                      <Text style={NavButtonStyles.NonSelectText}> {navButtonRight} </Text>
+                    </View>
+                  }
+                </View>
+              </Pressable>
+
+            </View>
           </View>
         </View>
 

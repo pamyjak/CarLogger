@@ -2,7 +2,7 @@
   "expo": {
     "name": "CarLogger",
     "slug": "CarLogger",
-    "version": "1.0.0",
+    "version": "InDev_0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Development stages of 'CarLogger App'"
   }
 }

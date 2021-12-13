@@ -18,18 +18,20 @@ export const Styles = StyleSheet.create({
     top: {
         backgroundColor: "white",
         alignItems: "center",
+        // justifyContent: "center",
         flex: 3, // Top to Bottom Ratio
     },
-    topText: {
+    topView: {
         backgroundColor: "white",
+        justifyContent: "center",
         alignItems: "center",
         flex: 1,
         width: Dimensions.get("screen").width,
-
+    },
+    topText: {
         // Text
-        color: "dodgerblue",
-        textAlign: "center",
-        textAlignVertical: "center",
+        color: "orange", // "dodgerblue",
+        // textAlign: "center",
         fontSize: 48,
         fontWeight: "bold",
     },
@@ -38,14 +40,6 @@ export const Styles = StyleSheet.create({
     bottom: {
         backgroundColor: "white",
         flex: 7, // Top to Bottom Ratio
-    },
-    bottomSubSections: {
-        // backgroundColor: 'green',
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: "black",
-        backgroundColor: "gainsboro"
     },
 
     scrollViewContainer1:
@@ -83,57 +77,86 @@ export const NavButtonStyles = StyleSheet.create({
     Backing: {
         backgroundColor: 'dodgerblue',
         height: NavButtonHeight,
-        flexDirection: "row",
+        width: Dimensions.get("screen").width,
+        // flexDirection: "row",
+        // flex: 1,
         justifyContent: "space-evenly",
         alignItems: "center",
     },
 
     PillBar: {
         flexDirection: "row",
-        justifyContent: "space-evenly",
         alignItems: "center",
         height: SlideBarHeight - (offset * 2),
         width: Dimensions.get("screen").width - (offset * 4),
 
         // Boarder
-        borderStyle: "solid",
-        borderRadius: SlideBarHeight / 2,
         backgroundColor: "royalblue", // "royalblue",
-        // borderWidth: offset / 2,
-        // borderColor: "gainsboro", // "gainsboro",
-    },
-
-    // Navigation Button style for Selected and Non-Selected states
-    Select: {
-        // Backing
-        backgroundColor: "royalblue",
-        height: SlideBarHeight,
-        width: Dimensions.get("screen").width / 3,
-
-        // Boarder
-        borderStyle: "solid",
         borderRadius: SlideBarHeight / 2,
-        backgroundColor: "white",
-        borderWidth: offset,
-        borderColor: "gainsboro",
-
-        // Text
-        color: "dodgerblue",
-        textAlign: "center",
-        textAlignVertical: "center",
-        fontSize: 18,
-        fontWeight: "bold",
     },
-    NonSelect: {
+
+    buttonView: {
         // Backing
         backgroundColor: "transparent", // Set to fully transparent
         height: NavButtonHeight,
         width: Dimensions.get("screen").width / 3,
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+    },
 
+    box: {
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        width: Dimensions.get("screen").width / 3,
+    },
+
+    // Selected Navigation Button Style
+    SelectView: {
+        // Backing
+        height: SlideBarHeight,
+        width: Dimensions.get("screen").width / 3, // - (offset * 4),
+        justifyContent: "center",
+        alignItems: "center",
+
+        // Boarder
+        backgroundColor: "white",
+        borderRadius: SlideBarHeight / 2,
+        borderColor: "gainsboro",
+        borderStyle: "solid",
+        borderWidth: offset,
+    },
+    SelectText: {
         // Text
-        color: "gainsboro", // "white",
+        color: "dodgerblue",
         textAlign: "center",
-        textAlignVertical: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+
+    // Non-Selected Navigation Button Style
+    NonSelectView: {
+        // Backing
+        // backgroundColor: "rgba(0,0,0, 0.2)", // "transparent", 
+        height: NavButtonHeight,
+        width: Dimensions.get("screen").width / 3, // - (offset * 4),
+        justifyContent: "center",
+        alignItems: "center",
+
+        // Boarder
+        // backgroundColor: "white",
+        // borderRadius: SlideBarHeight / 2,
+        // borderColor: "gainsboro",
+        // borderStyle: "solid",
+        // borderWidth: offset,
+    },
+    NonSelectText: {
+        // Text
+        color: "gainsboro",
+        textAlign: "center",
         fontSize: 18,
         fontWeight: "bold",
     },
