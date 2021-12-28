@@ -32,24 +32,6 @@ const navButtonPressedLeft = () => Alert.alert(navButtonLeft, "Add new " + navBu
     style: "cancel",
   }
 ]);
-const navButtonPressedCenter = () => Alert.alert(navButtonCenter, "Add new " + navButtonCenter + " Log?", [
-  {
-    text: "New " + navButtonLeft,
-  },
-  {
-    text: "Cancel",
-    style: "cancel",
-  }
-]);
-const navButtonPressedRight = () => Alert.alert(navButtonRight, "Add new " + navButtonRight + " Log?", [
-  {
-    text: "Accidents",
-  },
-  {
-    text: "Cancel",
-    style: "cancel",
-  }
-]);
 
 // Navigation Bar Buttons
 const NavBarButtonLeft = () => {
@@ -94,8 +76,11 @@ const App = () => {
   // Variable declarations
   StatusBar.setBarStyle('light-content', true);
   const [view, setView] = useState(1);
+  // let NavScrollView;
 
   // Sets the Navigation Window page
+  // NOTES: NavScrollView is set as a React refference. This reference is lost at every refresh, but re-instated at reload.
+  //   Not sure if this is the best implementation for the ScrollView here.
   function SetNavView(val) {
     setView(val);
     this.NavScrollView.scrollTo({
@@ -103,11 +88,16 @@ const App = () => {
       y: 0,
       animated: true // Determines if the ScrollView is immediate or animated horizontally 
     });
-    // console.log("Set View to: " + val); // REMOVE Logger
   }
 
   // Cookie Clicker
   const [timesPressed, setTimesPressed] = useState(0);
+
+
+  // constructor(props) {
+  //   super(props);
+  //   this.NavScrollView = React.createRef();
+  // }
 
   // Main return of App hooks
   return (
