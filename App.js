@@ -1,15 +1,12 @@
-import { Styles, NavButtonStyles } from './Styles';
+import { Styles, NavButtonStyles, ScrollViewStyles, MPGLogStyle } from './Styles';
+import { MPGLog } from './MPGLog';
 import React, { Component, useState, useRef } from 'react';
 import {
-  Alert,
-  Animated,
-  AppRegistry,
   Dimensions,
   Pressable,
   Text,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   View,
 } from 'react-native';
 
@@ -32,6 +29,11 @@ let navButtonLeft = "Milage";
 let navButtonCenter = "Maintenance";
 let navButtonRight = "Accidents";
 
+function awaitCall() {
+  console.log("Await...");
+  setTimeout(function () { console.log("Then call!") }, 2000); // Replace "function ()" with "() =>"
+}
+
 // Button
 const NavButton = (props) => {
   return (
@@ -49,7 +51,6 @@ const NavButton = (props) => {
 }
 
 // =========== MAIN APP ===============
-// const App = () => {
 class AppTest extends Component {
   // Cosntructor
   constructor(props) {
@@ -81,6 +82,7 @@ class AppTest extends Component {
 
   // Render of App
   render() {
+    let offsetSpacing = "   ";
     return (
       <SafeAreaView style={Styles.appBackground}>
 
@@ -111,23 +113,53 @@ class AppTest extends Component {
 
           {/* Bottom Section window */}
           <ScrollView
-            ref={re => NavScrollView = re}
-            horizontal={true}
-            pagingEnabled={true}
-            scrollEnabled={false} // Disables manual scrolling
-            showsHorizontalScrollIndicator={false}
-            decelerationRate="fast"
-            scrollEventThrottle={1} // iOS 
+            ref={re => NavScrollView = re} horizontal={true} pagingEnabled={true} scrollEnabled={false}
+            showsHorizontalScrollIndicator={false} decelerationRate="fast" scrollEventThrottle={1}
           >
-            <View style={Styles.scrollViewContainer1}>
-              <Text> Child 1 </Text>
+
+            {/* Creating MPG Log */}
+            <View style={ScrollViewStyles.Left}>
+              <ScrollView>
+
+                {/* Space reserved for MPG Graph */}
+                <View style={{
+                  width: Dimensions.get("screen").width,
+                  height: 220, // Dimensions.get("screen").height / 4,
+                  backgroundColor: "white",
+                }}>
+                  <Text> MPG Graph </Text>
+                </View>
+
+
+                {/* MPG Log List and Sections */}
+                <View style={MPGLogStyle.sectionBar}>
+                  <Text style={MPGLogStyle.sectionBarText}> {offsetSpacing}This month </Text>
+                </View>
+
+                <MPGLog milage={118736} miles={231.7} gallons={7.654} date={"01/18/2022"} />
+                <MPGLog />
+
+                <View style={MPGLogStyle.sectionBar}>
+                  <Text style={MPGLogStyle.sectionBarText}> {offsetSpacing}Last month </Text>
+                </View>
+
+                <MPGLog />
+                <MPGLog />
+                <MPGLog />
+
+                <View style={MPGLogStyle.sectionBar}>
+                  <Text style={MPGLogStyle.sectionBarText}> {offsetSpacing}October </Text>
+                </View>
+                <MPGLog />
+
+              </ScrollView>
             </View>
 
-            <View style={Styles.scrollViewContainer2}>
+            <View style={ScrollViewStyles.Center}>
               <Text> Child 2 </Text>
             </View>
 
-            <View style={Styles.scrollViewContainer3}>
+            <View style={ScrollViewStyles.Right}>
               <Text> Child 3 </Text>
             </View>
           </ScrollView>

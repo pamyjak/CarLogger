@@ -37,36 +37,11 @@ export const Styles = StyleSheet.create({
         backgroundColor: "white",
         flex: 7, // Top to Bottom Ratio
     },
-
-    scrollViewContainer1:
-    {
-        backgroundColor: "white",
-        flex: 1,
-        width: Dimensions.get("screen").width,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    scrollViewContainer2:
-    {
-        backgroundColor: "gainsboro",
-        flex: 1,
-        width: Dimensions.get("screen").width,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    scrollViewContainer3:
-    {
-        backgroundColor: "lightgrey",
-        flex: 1,
-        width: Dimensions.get("screen").width,
-        alignItems: "center",
-        justifyContent: "center",
-    },
 });
 
 
 /** Style Sheet for NavButtons **/
-let NavButtonHeight = 55;
+let NavButtonHeight = 60;
 let SlideBarHeight = 45;
 let offset = 3.5;
 export const NavButtonStyles = StyleSheet.create({
@@ -145,4 +120,84 @@ export const NavButtonStyles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
     },
+});
+
+
+/** ScrollViewStyles **/
+export const ScrollViewStyles = StyleSheet.create({
+    Left:
+    {
+        backgroundColor: "white",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "flex-start",
+    },
+    Center:
+    {
+        backgroundColor: "gainsboro",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    Right:
+    {
+        backgroundColor: "lightgrey",
+        flex: 1,
+        width: Dimensions.get("screen").width,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+});
+
+
+/** MPGLogStyle **/
+let mpgLogHeight = 100;
+export const MPGLogStyle = StyleSheet.create({
+    Graph:
+    {
+        width: Dimensions.get("screen").width,
+        height: 220, // Dimensions.get("screen").height / 4,
+        backgroundColor: "azure",
+    },
+    sectionBar:
+    {
+        width: Dimensions.get("screen").width,
+        height: 30,
+        backgroundColor: "white",
+        borderColor: "gainsboro",
+        justifyContent: "center",
+        borderTopWidth: 1,
+    },
+    sectionBarText: {
+        color: "darkgrey",
+        fontWeight: "bold",
+        fontStyle: "italic"
+    },
+    LogEdit:
+    {
+        width: Dimensions.get("screen").width / 4, // add 1/4 screen width
+        height: mpgLogHeight,
+        backgroundColor: "dodgerblue",
+        opacity: 0.5,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    LogDelete:
+    {
+        width: Dimensions.get("screen").width / 4, // add 1/4 screen width
+        height: mpgLogHeight,
+        backgroundColor: "red",
+        opacity: 0.5,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    Log:
+    {
+        width: Dimensions.get("screen").width,
+        height: mpgLogHeight,
+        backgroundColor: "azure",
+    },
+
 });
