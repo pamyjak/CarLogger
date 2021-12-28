@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Dimensions,
     Platform,
@@ -18,7 +17,6 @@ export const Styles = StyleSheet.create({
     top: {
         backgroundColor: "white",
         alignItems: "center",
-        // justifyContent: "center",
         flex: 3, // Top to Bottom Ratio
     },
     topView: {
@@ -29,9 +27,7 @@ export const Styles = StyleSheet.create({
         width: Dimensions.get("screen").width,
     },
     topText: {
-        // Text
         color: "orange", // "dodgerblue",
-        // textAlign: "center",
         fontSize: 48,
         fontWeight: "bold",
     },
@@ -78,8 +74,6 @@ export const NavButtonStyles = StyleSheet.create({
         backgroundColor: 'dodgerblue',
         height: NavButtonHeight,
         width: Dimensions.get("screen").width,
-        // flexDirection: "row",
-        // flex: 1,
         justifyContent: "space-evenly",
         alignItems: "center",
     },
@@ -139,19 +133,10 @@ export const NavButtonStyles = StyleSheet.create({
 
     // Non-Selected Navigation Button Style
     NonSelectView: {
-        // Backing
-        // backgroundColor: "rgba(0,0,0, 0.2)", // "transparent", 
         height: NavButtonHeight,
         width: Dimensions.get("screen").width / 3, // - (offset * 4),
         justifyContent: "center",
         alignItems: "center",
-
-        // Boarder
-        // backgroundColor: "white",
-        // borderRadius: SlideBarHeight / 2,
-        // borderColor: "gainsboro",
-        // borderStyle: "solid",
-        // borderWidth: offset,
     },
     NonSelectText: {
         // Text

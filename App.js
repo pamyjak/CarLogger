@@ -13,11 +13,6 @@ import {
   View,
 } from 'react-native';
 
-// // Handles Navigation view page
-// const setView = (props) => {
-//   return (view = props, console.log("Set to: " + view));
-// }
-
 // REMOVE Alert Messages
 // const navButtonPressedLeft = () => Alert.alert(navButtonLeft, "Add new " + navButtonLeft + " Log?", [
 //   {
@@ -29,26 +24,29 @@ import {
 //   }
 // ]);
 
-// Navigation Bar Buttons
-// const NavBarButtonLeft = () => {
-//   return (
-//     <Pressable onPress={() => setView(1)} >
-//       <View >
-//         {view == 1
-//           ? <Text style={Styles.navButtonSelect}> {navButtonLeft} </Text>
-//           : <Text style={Styles.navButtonNonSelect}> {navButtonLeft} </Text>
-//         }
-//       </View>
-//     </Pressable>
-//   );
-// }
+// Global variables
+let NavScrollView;
 
 // Section Names
 let navButtonLeft = "Milage";
 let navButtonCenter = "Maintenance";
 let navButtonRight = "Accidents";
 
-let NavScrollView;
+// Button
+const NavButton = (props) => {
+  return (
+    <Pressable onPress={props.onPress}>
+      {props.view == props.setTo
+        ? <View style={NavButtonStyles.SelectView}>
+          <Text style={NavButtonStyles.SelectText}> {props.text} </Text>
+        </View>
+        : <View style={NavButtonStyles.NonSelectView}>
+          <Text style={NavButtonStyles.NonSelectText}> {props.text} </Text>
+        </View>
+      }
+    </Pressable>
+  );
+}
 
 // =========== MAIN APP ===============
 // const App = () => {
@@ -65,37 +63,23 @@ class AppTest extends Component {
     view: 1,
   }
 
+  // Increment Counter from this.state
   incrementClicker = () => {
     this.setState({ clickerCount: this.state.clickerCount + 1, });
     console.log("Pressed! " + this.state.clickerCount);
   }
 
-  setViewLeft = () => {
-    this.setState({ view: 1 })
+  // Update View to math state
+  setView = (val) => {
+    this.setState({ view: val })
     NavScrollView.scrollTo({
-      x: Dimensions.get("screen").width * (1 - 1),
-      y: 0,
-      animated: true
-    });
-  }
-  setViewCenter = () => {
-    this.setState({ view: 2 })
-    NavScrollView.scrollTo({
-      x: Dimensions.get("screen").width * (2 - 1),
-      y: 0,
-      animated: true
-    });
-  }
-  setViewRight = () => {
-    this.setState({ view: 3 })
-    NavScrollView.scrollTo({
-      x: Dimensions.get("screen").width * (3 - 1),
+      x: Dimensions.get("screen").width * (val - 1),
       y: 0,
       animated: true
     });
   }
 
-  // Main return of App hooks
+  // Render of App
   render() {
     return (
       <SafeAreaView style={Styles.appBackground}>
@@ -118,44 +102,9 @@ class AppTest extends Component {
           <View style={NavButtonStyles.Backing}>
             <View style={NavButtonStyles.PillBar}>
               <View style={NavButtonStyles.buttonView}>
-
-                <Pressable onPress={this.setViewLeft}>
-                  {this.state.view == 1
-                    ? <View style={NavButtonStyles.SelectView}>
-                      <Text style={NavButtonStyles.SelectText}> {navButtonLeft} </Text>
-                    </View>
-                    : <View style={NavButtonStyles.NonSelectView}>
-                      <Text style={NavButtonStyles.NonSelectText}> {navButtonLeft} </Text>
-                    </View>
-                  }
-                </Pressable>
-
-                <Pressable onPress={this.setViewCenter}>
-                  <View >
-                    {this.state.view == 2
-                      ? <View style={NavButtonStyles.SelectView}>
-                        <Text style={NavButtonStyles.SelectText}> {navButtonCenter} </Text>
-                      </View>
-                      : <View style={NavButtonStyles.NonSelectView}>
-                        <Text style={NavButtonStyles.NonSelectText}> {navButtonCenter} </Text>
-                      </View>
-                    }
-                  </View>
-                </Pressable>
-
-                <Pressable onPress={this.setViewRight}>
-                  <View >
-                    {this.state.view == 3
-                      ? <View style={NavButtonStyles.SelectView}>
-                        <Text style={NavButtonStyles.SelectText}> {navButtonRight} </Text>
-                      </View>
-                      : <View style={NavButtonStyles.NonSelectView}>
-                        <Text style={NavButtonStyles.NonSelectText}> {navButtonRight} </Text>
-                      </View>
-                    }
-                  </View>
-                </Pressable>
-
+                <NavButton view={this.state.view} setTo={1} text={navButtonLeft} onPress={() => this.setView(1)} />
+                <NavButton view={this.state.view} setTo={2} text={navButtonCenter} onPress={() => this.setView(2)} />
+                <NavButton view={this.state.view} setTo={3} text={navButtonRight} onPress={() => this.setView(3)} />
               </View>
             </View>
           </View>
